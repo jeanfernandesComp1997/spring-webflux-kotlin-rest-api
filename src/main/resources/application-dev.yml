@@ -1,0 +1,2 @@
+providers:
+  rickAndMortyBaseUri: "https://rickandmortyapi.com/api"

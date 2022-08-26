@@ -1,5 +1,7 @@
 package com.example.springwebfluxkotlinrestapi.infra.providers
 
+import com.example.springwebfluxkotlinrestapi.domain.dtos.CharacterDTO
+import com.example.springwebfluxkotlinrestapi.domain.dtos.LocationDTO
 import com.example.springwebfluxkotlinrestapi.domain.dtos.RickAndMortyFindAllResponse
 import com.example.springwebfluxkotlinrestapi.infra.providers.interfaces.RickAndMortyApiProvider
 import org.springframework.beans.factory.annotation.Value
@@ -26,5 +28,21 @@ class RickAndMortyApiProviderImpl(
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
             .bodyToMono(RickAndMortyFindAllResponse::class.java)
+    }
+
+    override fun findById(id: Int): Mono<CharacterDTO> {
+        return webClient.get()
+            .uri("/character/$id")
+            .accept(MediaType.APPLICATION_JSON)
+            .retrieve()
+            .bodyToMono(CharacterDTO::class.java)
+    }
+
+    override fun findLocationById(id: Int): Mono<LocationDTO> {
+        return webClient.get()
+            .uri("/location/$id")
+            .accept(MediaType.APPLICATION_JSON)
+            .retrieve()
+            .bodyToMono(LocationDTO::class.java)
     }
 }

@@ -1,6 +1,6 @@
 package com.example.springwebfluxkotlinrestapi.domain.dtos
 
-data class OriginDTO(
+data class CharacterLocationDTO(
     val name: String,
     val url: String
 )

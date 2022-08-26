@@ -56,13 +56,9 @@ class CharacterServiceImpl(
     }
 
     override suspend fun findByIdBatch(ids: List<Int>): List<CharacterDTO> {
-        val characters = mutableListOf<CharacterDTO>()
-
-        ids.forEach { id ->
-            characters.add(rickAndMortyApiProvider.findById(id).awaitSingle())
+        return ids.map { id ->
+            rickAndMortyApiProvider.findById(id).awaitSingle()
         }
-
-        return characters
     }
 
     override suspend fun findByIdWithFullLocation(id: Int): CharacterWithFullLocationView {
